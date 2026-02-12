@@ -7,7 +7,7 @@ const initialValue = {
     name:"",
     time: "",
     message: "",
-    task: ""
+    task: null
 
 }
 

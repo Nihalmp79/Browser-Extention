@@ -18,6 +18,16 @@ const browserReducer = (state, {type,payload}) => {
         ...state,
         message: payload >= 0 && payload < 12 ? "Good Morning" : payload >=12 && payload <= 17 ? "Good afternoon" : " Good evening"
       }
+    case "TASK":
+      return {
+        ...state,
+        task: payload
+      }
+    case "CLEAR":
+      return {
+        ...state,
+        task: null
+      }
     default:
       return state
   }
