@@ -3,6 +3,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 import "./Task.css"
 import { useBrowser } from '../../context/browser-context'
 import { quotes } from '../../db/quotes' ;
+import { Todo } from '../../components/Todo/Todo'; 
 
 const index = Math.floor(Math.random() * quotes.length);
 const quote = quotes[index].quote;
@@ -10,7 +11,8 @@ const quote = quotes[index].quote;
 
 const Task = () => {  
 
-  const [isChecked, setIsChecked] = useState(false);  
+  const [isChecked, setIsChecked] = useState(false); 
+  const [isTodoOpen, setIsTodoOpen] = useState(false);
 
   const {name, time, message, task, browserDispatch} = useBrowser();
 
@@ -91,9 +93,13 @@ const Task = () => {
     localStorage.removeItem("checkedStatus");
   }
 
+  const handleToDoClick = () => {
+    setIsTodoOpen(isTodoOpen => !isTodoOpen)
+  }
+
 
   return (
-    <div className='task-container d-flex direction-column align-center'>
+    <div className='task-container d-flex direction-column align-center relative'>
       <span className='time'>{time}</span>
       <span className='message'>{message}, {name}</span>
       {name !== null && task === null ? (
@@ -122,7 +128,10 @@ const Task = () => {
       <div className='quote-container'>
         <span className='heading-3'>{quote}</span>
       </div>
-
+      {isTodoOpen && <Todo />}
+      <div className='todo-btn-container absolute'>
+        <button className='button cursor todo-btn' onClick={handleToDoClick}>ToDo</button>
+      </div>
     </div>
   )
 }

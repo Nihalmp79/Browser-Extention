@@ -49,3 +49,12 @@
     text-align: center;
 
 }
+.todo-btn{
+    font-size: 2rem;
+
+}
+.todo-btn-container{
+    right: 2rem;
+    bottom: 3.5rem;
+
+}
