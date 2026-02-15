@@ -22,6 +22,11 @@ const Task = () => {
       type: "TASK",
       payload: userTask
     });
+    if(new Date().getDate() !== Number(localStorage.getItem("date"))){
+      localStorage.removeItem("task");
+      localStorage.removeItem("date");  
+      localStorage.removeItem("checkedStatus");
+    }
   },[])
 
   useEffect(() => {
